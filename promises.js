@@ -1,15 +1,18 @@
-const studentResult = new Promise((resolve, reject) => {
-    let result = Math.random() > 0.5 ? "Pass" : "Fail";
-
-    if (result === "Pass") {
-        resolve("Congratulations! You have passed the exam.");
+const checkUsername = (name) => {
+  return new Promise((resolve, reject) => {
+    let userName = name;
+    if (userName.length >= 5) {
+      resolve(`Valid Username`);
     } else {
-        reject("Unfortunately, you have failed the exam. Please try again.");
+      reject("Username is too Short");
     }
-})
+  })
+    .then((message) => {
+      console.log(message);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
-studentResult.then((message) => {
-    console.log(message);
-}).catch((error) => {
-    console.log(error);
-})
+checkUsername("baid");
