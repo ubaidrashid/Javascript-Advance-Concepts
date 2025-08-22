@@ -49,6 +49,23 @@ const showData = async () => {
   console.log(userData);
   let orders = await getOrders(userData);
   console.log(orders);
+
+  let totalCalculation = calcOrderTotal(orders);
+  console.log(totalCalculation);
 };
 
 showData();
+
+const calcOrderTotal = (orders) => {
+  return orders.map((order) => {
+    let total = order.items.reduce(
+      (sum, item) => sum + item.qty * item.price,
+      0
+    );
+    return {
+      order: order.orderId,
+      date: order.date,
+      TotalAmount: total,
+    };
+  });
+};
